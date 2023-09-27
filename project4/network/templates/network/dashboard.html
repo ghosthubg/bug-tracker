@@ -1,0 +1,81 @@
+{% extends "network/layout.html" %}
+{% block body %}
+<div class="d-flex justify-content-between">
+    <div style="background-color: white; padding: 10px; width: 30%;">
+        <canvas id="myChart" width="400" height="300"></canvas>
+    </div>
+
+    <div style="background-color: white; padding: 10px; width: 30%;">
+        <canvas id="status" width="400" height="300"></canvas>
+    </div>
+
+    <div style="background-color: white; padding: 10px; width: 30%;">
+        <canvas id="developer" width="400" height="300"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ labels|safe }},
+            datasets: [{
+                label: 'Bug Severity',
+                data: {{ data|safe }},
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const ctv = document.getElementById('status');
+    new Chart(ctv, {
+        type: 'line',
+        data: {
+            labels: {{ labelset|safe }},
+            datasets: [{
+                label: 'Status',
+                data: {{ dataset|safe }},
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const ctf = document.getElementById('developer');
+    new Chart(ctf, {
+        type: 'pie',
+        data: {
+            labels: {{ labelset1|safe }},
+            datasets: [{
+                label: 'Assigned Developers',
+                data: {{ dataset1|safe }},
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+.form-control{
+    width:55%;
+
+}
+
+/* Add this style to change the default button color */
+  .btn-outline-success {
+    color: #ffffff; /* Text color */
+    background-color: #87CEEB; /* Sky blue color */
+    border-color: #87CEEB; /* Border color */
+  }
+
+  /* Add this style for the hover effect */
+  .btn-outline-success:hover {
+    color: #ffffff; /* Text color on hover */
+    background-color: #4682B4; /* Darker shade of blue for hover background */
+    border-color: #4682B4; /* Border color on hover */
+  }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

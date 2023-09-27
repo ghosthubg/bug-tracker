@@ -1,0 +1,92 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <h6 class="mb-4">New Bug</h6>
+    <div class="border p-4">
+        <form method="post" id="form-list" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title" class="form-control" placeholder="Enter Title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea name="description" id="description" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select name="status" id="status" class="form-control" required>
+                    <option value="" selected>Select Status</option>
+                    <option value="new">New</option>
+                    <option value="fixed">Fixed</option>
+                    <option value="under_review">Under Review</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="severity">Severity:</label>
+                <select name="severity" id="severity" class="form-control" required>
+                    <option value="" selected>Select Severity</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" name="image" id="image" class="form-control-file" required>
+            </div>
+
+            <div class="form-group">
+                <label for="steps_to_reproduce">Steps to Reproduce:</label>
+                <textarea name="steps_to_reproduce" id="steps_to_reproduce" class="form-control" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="reporter">Reporter:</label>
+                <input type="text" name="reporter" id="reporter" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="comments">Comments:</label>
+                <textarea name="comments" id="comments" class="form-control" rows="2" style="width: 80%; border: 1px solid #ccc; margin-left: 5px;" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    $(document).on('submit', '#form-list', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "index" %}',
+            data: {
+                title: $("#title").val(),
+                description: $("#description").val(),
+                status: $("#status").val(),
+                severity: $("#severity").val(),
+                image: $("#image").val(),
+                steps_to_reproduce: $("#steps_to_reproduce").val(),
+                reporter: $("#reporter").val(),
+                comments: $("#comments").val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function () {
+                alert('Saved');
+            }
+        });
+    });
+</script>
+
+{% endblock %}

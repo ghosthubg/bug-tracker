@@ -1,0 +1,14 @@
+{% extends "network/layout.html" %}
+{% block body %}
+<div>
+<ul>
+          {% for status_item in current_statuses %}
+            <li>{{ status_item.bug }}</li>
+            <li>{{ status_item.status }}</li>
+          {% endfor %}
+
+
+</ul>
+</div>
+
+{% endblock %}

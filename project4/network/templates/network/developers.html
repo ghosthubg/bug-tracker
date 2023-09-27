@@ -1,0 +1,16 @@
+{% extends "network/layout.html" %}
+{% block body %}
+    <h6>Add Developers</h6>
+    <form method="POST">
+        {% csrf_token %}
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <textarea name="name" id="name" class="form-control" rows="4" required></textarea>
+    </div>
+     <div class="form-group">
+        <label for="email">Email:</label>
+        <textarea name="email" id="email" class="form-control" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Developer</button>
+        </form>
+{% endblock %}
